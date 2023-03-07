@@ -1,0 +1,18 @@
+language: node_js
+node_js:
+  - 16
+
+env:
+  { EMACS_VERSION }
+
+matrix:
+  fast_finish: true
+
+install:
+  - npm install @emacs-eask/cli -g
+
+script:
+  - eask clean all
+  - eask install
+  - eask compile
+  - eask lint package
