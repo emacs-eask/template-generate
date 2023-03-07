@@ -1,16 +1,8 @@
 default:
-  image: node:16
-
-pages:
-  stage: test
   before_script:
-  - npm install @emacs-eask/cli -g
-  - apt-get update
-  - apt-get install emacs -y
-  script:
-  - eask clean all
-  - eask package
-  - eask install
-  - eask compile
-  only:
-  - main
+    - apt-get update
+    - apt-get install unzip
+    - curl -fsSL https://raw.githubusercontent.com/emacs-eask/cli/master/webinstall/install.sh | sh
+    - export PATH="$HOME/.local/bin:$PATH"
+    
+{ EMACS_VERSION }
