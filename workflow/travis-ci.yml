@@ -1,6 +1,8 @@
-language: node_js
-node_js:
-  - 16
+language: nix
+
+os:
+  - linux
+  - osx
 
 env:
   { EMACS_VERSION }
@@ -9,7 +11,9 @@ matrix:
   fast_finish: true
 
 install:
-  - npm install @emacs-eask/cli -g
+  - bash <(curl https://raw.githubusercontent.com/purcell/nix-emacs-ci/master/travis-install)
+  - curl -fsSL https://raw.githubusercontent.com/emacs-eask/cli/master/webinstall/install.sh | sh
+  - export PATH="$HOME/.local/bin:$PATH"
 
 script:
   - eask clean all
